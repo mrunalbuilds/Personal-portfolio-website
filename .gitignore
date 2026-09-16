@@ -41,3 +41,14 @@ next-env.d.ts
 /js
 /assets
 index.html
+
+# scratch / source assets (not needed in repo)
+/aws
+/k8s.png
+/note.avif
+/notes.jpg
+/snotes.jpg
+/front.png
+
+# resume — serve via external link (Google Drive etc.)
+public/resume.pdf
