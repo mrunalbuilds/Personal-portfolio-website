@@ -171,27 +171,31 @@ const projects = [
 
 const hobbies = [
   {
-    title: 'Badminton',
-    note: 'On the court most weekends',
-    tint: 'bg-yellow-200/10',
+    title: 'Reading',
+    note: 'Non-fiction mostly, the occasional novel',
+    image: '/books.png',
+    tint: 'bg-blue-400/10',
     rotate: '-2deg',
   },
   {
     title: 'Running',
     note: '5k routes as thinking time',
-    tint: 'bg-green-400/20',
+    image: '/running.png',
+    tint: 'bg-green-400/12',
     rotate: '1.5deg',
   },
   {
-    title: 'Reading',
-    note: 'Non-fiction mostly, the occasional novel',
-    tint: 'bg-blue-400/20',
+    title: 'Travel',
+    note: 'New places, different perspectives',
+    image: '/travel.jpg',
+    tint: 'bg-orange-400/10',
     rotate: '-1deg',
   },
   {
-    title: 'Toastmasters',
-    note: 'Because engineers should communicate too',
-    tint: 'bg-pink-400/20',
+    title: 'Badminton',
+    note: 'On the court most weekends',
+    image: '/badminton.jpeg',
+    tint: 'bg-yellow-400/12',
     rotate: '2deg',
   },
 ];
@@ -210,7 +214,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-full flex items-center justify-between">
           <span className="font-mono text-sm text-zinc-500 tracking-wider">mrunal.joshi</span>
           <div className="hidden md:flex items-center gap-8">
-            {['Experience', 'Skills', 'Projects'].map((item) => (
+            {['Experience', 'Skills', 'Projects', 'Hobbies'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item.toLowerCase())}
@@ -513,30 +517,30 @@ export default function Home() {
       </section>
 
       {/* Hobbies — sticky notes */}
-      <section className="py-24 bg-zinc-900/25">
+      <section id="hobbies" className="py-24 bg-zinc-900/25">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
-            <h2 className="text-4xl font-bold mb-16">Outside work</h2>
+            <h2 className="text-4xl font-bold mb-16">Away from the keyboard</h2>
           </Reveal>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {hobbies.map((h, i) => (
               <Reveal key={h.title} delay={i * 0.07}>
                 <div
-                  className="relative aspect-square rounded-sm overflow-hidden shadow-lg"
+                  className="relative aspect-square rounded-xl overflow-hidden shadow-lg border border-zinc-800"
                   style={{ transform: `rotate(${h.rotate})` }}
                 >
                   <Image
-                    src="/notes.jpg"
-                    alt=""
+                    src={h.image}
+                    alt={h.title}
                     fill
                     className="object-cover"
                   />
-                  <div className={`absolute inset-0 ${h.tint}`} />
-                  <div className="relative z-10 p-5 flex flex-col justify-end h-full">
-                    <p className="font-mono text-sm font-bold text-zinc-800 leading-tight">
+                  <div className={`absolute inset-0 ${h.tint} backdrop-blur-[1px]`} />
+                  <div className="relative z-10 p-5 flex flex-col justify-end h-full bg-gradient-to-t from-zinc-950/80 to-transparent">
+                    <p className="font-mono text-sm font-bold text-zinc-100 leading-tight">
                       {h.title}
                     </p>
-                    <p className="text-xs text-zinc-600 mt-1 leading-relaxed">{h.note}</p>
+                    <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{h.note}</p>
                   </div>
                 </div>
               </Reveal>
