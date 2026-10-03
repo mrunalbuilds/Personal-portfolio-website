@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'motion/react';
+import { useState, useEffect } from 'react';
 import {
   ArrowUpRight,
   GithubLogo,
@@ -35,6 +36,36 @@ function Reveal({
       {children}
     </motion.div>
   );
+}
+
+function TypeWriter({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayText, setDisplayText] = useState('');
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) {
+      setDisplayText(text);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          setDisplayText(text.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 30);
+
+      return () => clearInterval(interval);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [text, delay, reduce]);
+
+  return <>{displayText}</>;
 }
 
 /* ── terminal components ────────────────────────────────────────────── */
@@ -190,7 +221,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-full flex items-center justify-between">
           <span className="font-mono text-sm text-zinc-500 tracking-wider">mrunal.joshi</span>
           <div className="hidden md:flex items-center gap-8">
-            {['Experience', 'Skills', 'Projects', 'Hobbies'].map((item) => (
+            {['Experience', 'Skills', 'Projects'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item.toLowerCase())}
@@ -226,23 +257,37 @@ export default function Home() {
               {/* Terminal block */}
               <div className="mb-8">
                 <TerminalWindow command="cat README.md">
-                  <div className="space-y-3 text-sm">
+                  <div className="space-y-3 text-sm min-h-[240px]">
                     <div>
-                      <p className="text-zinc-100 font-semibold text-base"># Mrunal Joshi</p>
-                      <p className="text-zinc-400 mt-0.5">Software Engineer</p>
+                      <p className="text-zinc-100 font-semibold text-base">
+                        <TypeWriter text="# Mrunal Joshi" delay={300} />
+                      </p>
+                      <p className="text-zinc-400 mt-0.5">
+                        <TypeWriter text="Software Engineer" delay={800} />
+                      </p>
                     </div>
                     <p className="text-zinc-300 leading-relaxed">
-                      Building platform tooling at scale<br />with an AI-first mindset.
+                      <TypeWriter text="Building platform tooling at scale with an AI-first mindset." delay={1400} />
                     </p>
                     <div>
-                      <p className="text-orange-400 text-xs mb-1">## Stack</p>
-                      <p className="text-zinc-300">Go · Python · Kubernetes · Terraform · AWS</p>
+                      <p className="text-orange-400 text-xs mb-1">
+                        <TypeWriter text="## Stack" delay={2200} />
+                      </p>
+                      <p className="text-zinc-300">
+                        <TypeWriter text="Go · Python · Kubernetes · Terraform · AWS" delay={2500} />
+                      </p>
                     </div>
                     <div>
-                      <p className="text-orange-400 text-xs mb-1">## Status</p>
-                      <p className="text-emerald-400">● Available for new opportunities</p>
+                      <p className="text-orange-400 text-xs mb-1">
+                        <TypeWriter text="## Status" delay={3400} />
+                      </p>
+                      <p className="text-emerald-400">
+                        <TypeWriter text="● Available for new opportunities" delay={3700} />
+                      </p>
                     </div>
-                    <p className="text-zinc-700 pt-1 select-none">▋</p>
+                    <p className="text-zinc-700 pt-1 select-none">
+                      <TypeWriter text="▋" delay={4800} />
+                    </p>
                   </div>
                 </TerminalWindow>
               </div>
