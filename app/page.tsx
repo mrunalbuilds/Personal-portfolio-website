@@ -169,37 +169,11 @@ const projects = [
   },
 ];
 
-const basePath = process.env.NODE_ENV === 'production' ? '/Personal-portfolio-website' : '';
-
 const hobbies = [
-  {
-    title: 'Reading',
-    note: 'Non-fiction mostly, the occasional novel',
-    image: `${basePath}/books.png`,
-    tint: 'bg-blue-400/10',
-    rotate: '-2deg',
-  },
-  {
-    title: 'Running',
-    note: '5k routes as thinking time',
-    image: `${basePath}/running.png`,
-    tint: 'bg-green-400/12',
-    rotate: '1.5deg',
-  },
-  {
-    title: 'Travel',
-    note: 'New places, different perspectives',
-    image: `${basePath}/travel.jpg`,
-    tint: 'bg-orange-400/10',
-    rotate: '-1deg',
-  },
-  {
-    title: 'Badminton',
-    note: 'On the court most weekends',
-    image: `${basePath}/badminton.jpeg`,
-    tint: 'bg-yellow-400/12',
-    rotate: '2deg',
-  },
+  { namespace: 'fiction', name: 'books', status: 'Active', age: 'life' },
+  { namespace: 'cardio', name: 'running', status: 'Active', age: '5y' },
+  { namespace: 'adventure', name: 'travel', status: 'Active', age: 'life' },
+  { namespace: 'sports', name: 'badminton', status: 'Active', age: '8y' },
 ];
 
 /* ── page ───────────────────────────────────────────────────────────── */
@@ -501,36 +475,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hobbies — sticky notes */}
+      {/* Hobbies — kubectl style */}
       <section id="hobbies" className="py-24 bg-zinc-900/25">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
             <h2 className="text-4xl font-bold mb-16">Away from the keyboard</h2>
           </Reveal>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {hobbies.map((h, i) => (
-              <Reveal key={h.title} delay={i * 0.07}>
-                <div
-                  className="relative aspect-square rounded-xl overflow-hidden shadow-lg border border-zinc-800"
-                  style={{ transform: `rotate(${h.rotate})` }}
-                >
-                  <Image
-                    src={h.image}
-                    alt={h.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className={`absolute inset-0 ${h.tint} backdrop-blur-[1px]`} />
-                  <div className="relative z-10 p-5 flex flex-col justify-end h-full bg-gradient-to-t from-zinc-950/80 to-transparent">
-                    <p className="font-mono text-sm font-bold text-zinc-100 leading-tight">
-                      {h.title}
-                    </p>
-                    <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{h.note}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <TerminalWindow command="kubectl get hobbies --all-namespaces">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm font-mono min-w-[480px]">
+                  <thead>
+                    <tr className="text-zinc-500 border-b border-zinc-800">
+                      <th className="text-left pb-3 pr-6 font-normal tracking-wider text-xs">NAMESPACE</th>
+                      <th className="text-left pb-3 pr-6 font-normal tracking-wider text-xs">NAME</th>
+                      <th className="text-left pb-3 pr-6 font-normal tracking-wider text-xs">STATUS</th>
+                      <th className="text-left pb-3 font-normal tracking-wider text-xs">AGE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {hobbies.map((h, i) => (
+                      <tr
+                        key={`${h.namespace}-${h.name}`}
+                        className="border-b border-zinc-900/60 hover:bg-zinc-800/30 transition-colors"
+                      >
+                        <td className="py-2 pr-6 text-zinc-500">{h.namespace}</td>
+                        <td className="py-2 pr-6 text-zinc-100">{h.name}</td>
+                        <td className="py-2 pr-6">
+                          <span className="text-emerald-400">{h.status}</span>
+                        </td>
+                        <td className="py-2 text-zinc-500">{h.age}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </TerminalWindow>
+          </Reveal>
         </div>
       </section>
 
