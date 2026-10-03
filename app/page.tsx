@@ -257,7 +257,7 @@ export default function Home() {
               {/* Terminal block */}
               <div className="mb-8">
                 <TerminalWindow command="cat README.md">
-                  <div className="space-y-3 text-sm min-h-[240px]">
+                  <div className="space-y-3 text-sm min-h-[180px]">
                     <div>
                       <p className="text-zinc-100 font-semibold text-base">
                         <TypeWriter text="# Mrunal Joshi" delay={300} />
@@ -271,22 +271,14 @@ export default function Home() {
                     </p>
                     <div>
                       <p className="text-orange-400 text-xs mb-1">
-                        <TypeWriter text="## Stack" delay={2200} />
-                      </p>
-                      <p className="text-zinc-300">
-                        <TypeWriter text="Go · Python · Kubernetes · Terraform · AWS" delay={2500} />
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-orange-400 text-xs mb-1">
-                        <TypeWriter text="## Status" delay={3400} />
+                        <TypeWriter text="## Status" delay={2200} />
                       </p>
                       <p className="text-emerald-400">
-                        <TypeWriter text="● Available for new opportunities" delay={3700} />
+                        <TypeWriter text="● Available for new opportunities" delay={2500} />
                       </p>
                     </div>
                     <p className="text-zinc-700 pt-1 select-none">
-                      <TypeWriter text="▋" delay={4800} />
+                      <TypeWriter text="▋" delay={3600} />
                     </p>
                   </div>
                 </TerminalWindow>
