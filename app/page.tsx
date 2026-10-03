@@ -169,32 +169,34 @@ const projects = [
   },
 ];
 
+const basePath = process.env.NODE_ENV === 'production' ? '/Personal-portfolio-website' : '';
+
 const hobbies = [
   {
     title: 'Reading',
     note: 'Non-fiction mostly, the occasional novel',
-    image: '/books.png',
+    image: `${basePath}/books.png`,
     tint: 'bg-blue-400/10',
     rotate: '-2deg',
   },
   {
     title: 'Running',
     note: '5k routes as thinking time',
-    image: '/running.png',
+    image: `${basePath}/running.png`,
     tint: 'bg-green-400/12',
     rotate: '1.5deg',
   },
   {
     title: 'Travel',
     note: 'New places, different perspectives',
-    image: '/travel.jpg',
+    image: `${basePath}/travel.jpg`,
     tint: 'bg-orange-400/10',
     rotate: '-1deg',
   },
   {
     title: 'Badminton',
     note: 'On the court most weekends',
-    image: '/badminton.jpeg',
+    image: `${basePath}/badminton.jpeg`,
     tint: 'bg-yellow-400/12',
     rotate: '2deg',
   },
