@@ -238,9 +238,7 @@ export default function Home() {
       {/* Hero */}
       <section id="home" className="min-h-[100dvh] flex items-center pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Left */}
+          <div className="max-w-4xl mx-auto">
             <div>
               <p className="font-mono text-sm text-blue-400 uppercase tracking-[0.2em] mb-6">
                 Software Engineer
@@ -293,21 +291,6 @@ export default function Home() {
               <div className="flex items-center gap-2 text-sm text-zinc-500">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                 Open to new opportunities
-              </div>
-            </div>
-
-            {/* Right: photo */}
-            <div className="hidden lg:flex justify-end">
-              <div className="relative">
-                <div className="absolute -inset-6 bg-blue-500/8 rounded-3xl blur-2xl pointer-events-none" />
-                <Image
-                  src="/profile.jpg"
-                  alt="Mrunal Joshi"
-                  width={400}
-                  height={400}
-                  className="relative rounded-2xl object-cover"
-                  priority
-                />
               </div>
             </div>
           </div>
